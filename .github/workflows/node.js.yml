@@ -39,3 +39,16 @@ jobs:
 
     - name: Check format
       run: yarn run format:check
+
+    - name: Set status checks
+      if: always()  # Always set the status check, even if previous steps failed
+      uses: octokit/request-action@v2.x
+      with:
+        route: POST /repos/${{ github.repository }}/statuses/${{ github.sha }}
+        headers:
+          authorization: ${{ secrets.GITHUB_TOKEN }}
+        data:
+          state: ${{ job.status }}
+          context: CI/tests
+          description: Tests status
+        
