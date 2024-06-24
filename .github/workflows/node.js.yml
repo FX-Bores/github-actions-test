@@ -40,11 +40,11 @@ jobs:
     #     CHANGED_FILES=$(git diff --name-only $BASE $HEAD)
     #     echo "changed-files=$CHANGED_FILES" >> $GITHUB_ENV
 
-    - name: Check format
-      run: |
-        git diff --name-only "${{ github.event.pull_request.base.sha }}..${{ github.event.pull_request.head.sha }}"
     # - name: Check format
     #   run: |
-    #     git diff --name-only "${{ github.event.pull_request.base.sha }}..${{ github.event.pull_request.head.sha }}" | xargs yarn run format:check
+    #     git diff --name-only "${{ github.event.pull_request.base.sha }}..${{ github.event.pull_request.head.sha }}"
+    - name: Check format
+      run: |
+        git diff --name-only "${{ github.event.pull_request.base.sha }}..${{ github.event.pull_request.head.sha }}" | xargs yarn run format:check
       # env:
       #   CHANGED_FILES: ${{ env.changed-files }}
