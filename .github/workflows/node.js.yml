@@ -39,6 +39,6 @@ jobs:
 
     - name: Check format
       run: |
-        git diff --name-only "$GITHUB_BASE_REF..$GITHUB_SHA" | xargs yarn run format:check
+        git diff --name-only "$GITHUB_BASE_REF..${{ github.event.pull_request.head.sha }}" | xargs yarn run format:check
       env:
         CHANGED_FILES: ${{ env.changed-files }}
