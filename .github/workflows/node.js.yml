@@ -32,7 +32,9 @@ jobs:
     - name: Get list of changed files
       id: changed-files
       run: |
-        CHANGED_FILES=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }})
+        BASE=${{ github.event.pull_request.base.sha }}
+        HEAD=${{ github.event.pull_request.head.sha }}
+        CHANGED_FILES=$(git diff --name-only $BASE $HEAD)
         echo "changed-files=$CHANGED_FILES" >> $GITHUB_ENV
 
     - name: Check format
