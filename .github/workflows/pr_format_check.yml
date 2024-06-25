@@ -32,8 +32,8 @@ jobs:
 
     - name: Check format
       run: |
-        git diff --name-only "${{ github.event.pull_request.base.sha }}..${{ github.event.pull_request.head.sha }}" 
-        | grep -v '^D'
-        | awk '{print $2}'
-        | xargs yarn run format:check
+        git diff --name-status "${{ github.event.pull_request.base.sha }}..${{ github.event.pull_request.head.sha }}" |
+        grep -v '^D' |
+        awk '{print $2}' |
+        xargs yarn run format:check
   
