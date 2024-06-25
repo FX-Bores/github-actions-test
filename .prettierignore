@@ -1,6 +1,25 @@
+# Ignore everything recursively
+*
+
+# Include desired file types
+!*.ts
+!*.js
+!*.jsx
+!*.tsx
+!*.json
+!*.html
+!*.css
+!*.md
+!*.yaml
+!*.yml
+
+# Check subdirectories
+!*/
+
+# Exclude other folders
+
 # yarn
 .yarn/
-yarn.lock
 
 # resources
 /public/
@@ -16,6 +35,3 @@ yarn.lock
 
 # IDE
 .vscode/
-
-# prettierignore
-.prettierignore
