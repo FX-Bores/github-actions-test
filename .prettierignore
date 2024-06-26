@@ -1,3 +1,23 @@
+# Ignore everything recursively
+*
+
+# Include desired file types
+!*.ts
+!*.js
+!*.jsx
+!*.tsx
+!*.json
+!*.html
+!*.css
+!*.md
+!*.yaml
+!*.yml
+
+# Check subdirectories
+!*/
+
+# Exclude other folders
+
 # yarn
 .yarn/
 
@@ -15,4 +35,3 @@
 
 # IDE
 .vscode/
-

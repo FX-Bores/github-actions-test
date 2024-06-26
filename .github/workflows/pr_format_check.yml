@@ -1,0 +1,39 @@
+name: Format Check
+
+on:
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Fetch all branches and tags
+      run: git fetch --all
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'yarn'
+
+    - name: Install dependencies
+      run: yarn install
+
+    - name: Check format
+      run: |
+        git diff --name-status "${{ github.event.pull_request.base.sha }}..${{ github.event.pull_request.head.sha }}" |
+        grep -v '^D' |
+        awk '{print $2}' |
+        xargs yarn run format:check
+  
